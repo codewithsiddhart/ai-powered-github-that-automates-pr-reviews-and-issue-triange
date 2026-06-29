@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}AI Repo Manager{% endblock %} — GitHub Autopilot</title>
+  <meta name="description" content="AI-powered GitHub automation — smart PR reviews, issue triage, secret scanning, and 26 slash commands.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-name">GitHub Autopilot</span>
+        <span class="brand-tag">v{{ version }}</span>
+      </a>
+      <div class="nav-links">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/dashboard" class="nav-link nav-link--cta">
+          <i data-lucide="layout-dashboard" class="nav-icon"></i>
+          Dashboard
+        </a>
+        <a href="https://github.com/Shweta-Mishra-ai/github-autopilot" class="nav-link" target="_blank" rel="noopener">
+          <i data-lucide="github" class="nav-icon"></i>
+        </a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light/dark">
+          <i data-lucide="sun" class="icon-sun"></i>
+          <i data-lucide="moon" class="icon-moon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-brand">⚡ GitHub Autopilot</span>
+        <span class="footer-version">AI Repo Manager v{{ version }}</span>
+      </div>
+      <div class="footer-center">
+        <p class="footer-credits">
+          Crafted by <strong>Siddharth Purohit</strong> &amp; <strong>Shweta Sharma</strong>
+        </p>
+      </div>
+      <div class="footer-right">
+        <a href="https://github.com/Shweta-Mishra-ai/github-autopilot" class="footer-link" target="_blank" rel="noopener">
+          <i data-lucide="github"></i> GitHub
+        </a>
+        <a href="/dashboard" class="footer-link">
+          <i data-lucide="layout-dashboard"></i> Dashboard
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shared JS -->
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+  {% block scripts %}{% endblock %}
+
+  <!-- Init Lucide icons -->
+  <script>
+    if (typeof lucide !== 'undefined') { lucide.createIcons(); }
+  </script>
+
+</body>
+</html>

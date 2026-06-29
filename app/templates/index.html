@@ -1,0 +1,431 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<!-- ── Hero ──────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-orb hero-orb--1"></div>
+  <div class="hero-orb hero-orb--2"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <i data-lucide="zap"></i>
+      AI-Powered · Self-Hosted · Open Source
+    </div>
+
+    <h1 class="hero-title">
+      Automate Your<br>
+      <span class="gradient-text">GitHub Workflow</span>
+    </h1>
+
+    <p class="hero-tagline">
+      A self-hosted GitHub App that uses 4 LLM providers to review PRs, triage issues,
+      scan for secrets, and respond to 26 slash commands — automatically.
+    </p>
+
+    <div class="hero-actions">
+      <a href="/dashboard" class="btn btn--primary">
+        <i data-lucide="layout-dashboard"></i>
+        View Dashboard
+      </a>
+      <a href="https://github.com/Shweta-Mishra-ai/github-autopilot"
+         class="btn btn--ghost" target="_blank" rel="noopener">
+        <i data-lucide="github"></i>
+        GitHub Repo
+      </a>
+    </div>
+
+    <!-- Quick stats strip -->
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">4</span>
+        <span class="hero-stat-label">AI Providers</span>
+      </div>
+      <div class="hero-stat-div"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">26</span>
+        <span class="hero-stat-label">Slash Commands</span>
+      </div>
+      <div class="hero-stat-div"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">41</span>
+        <span class="hero-stat-label">Secret Patterns</span>
+      </div>
+      <div class="hero-stat-div"></div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">7</span>
+        <span class="hero-stat-label">Security Stages</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── What Is It ───────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>What is GitHub Autopilot?</h2>
+      <p>Install it once. It reviews every PR, triages every issue, and scans every push — automatically, in seconds.</p>
+    </div>
+
+    <div class="explainer-grid">
+      <div class="explainer-card">
+        <div class="explainer-icon"><i data-lucide="github"></i></div>
+        <h3>GitHub App</h3>
+        <p>Receives webhook events — PRs opened, issues created, comments posted, pushes — directly from GitHub.</p>
+      </div>
+      <div class="explainer-card explainer-card--plus">+</div>
+      <div class="explainer-card">
+        <div class="explainer-icon"><i data-lucide="cpu"></i></div>
+        <h3>AI Router</h3>
+        <p>Routes tasks to the best model across Groq 70B, Groq 8B, Gemini Flash, and OpenRouter with circuit breakers.</p>
+      </div>
+      <div class="explainer-card explainer-card--equals">=</div>
+      <div class="explainer-card">
+        <div class="explainer-icon"><i data-lucide="sparkles"></i></div>
+        <h3>Automated Actions</h3>
+        <p>Code reviews posted as comments, issues labeled and triaged, secrets flagged, PRs auto-fixed — all in your repo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features ─────────────────────────────────────────────── -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-header">
+      <h2>Everything You Need</h2>
+      <p>Comprehensive repository automation that runs entirely on your own infrastructure.</p>
+    </div>
+
+    <div class="features-grid">
+
+      <div class="feature-card" style="--delay: 0ms">
+        <div class="feature-icon feature-icon--blue">
+          <i data-lucide="git-pull-request"></i>
+        </div>
+        <h3>Smart PR Reviews</h3>
+        <p>AI-powered code analysis on every PR. Quality grades A–F, security findings, test gap detection, and blast radius assessment. Configurable per repo.</p>
+      </div>
+
+      <div class="feature-card" style="--delay: 80ms">
+        <div class="feature-icon feature-icon--red">
+          <i data-lucide="tag"></i>
+        </div>
+        <h3>Issue Auto-Triage</h3>
+        <p>Automatically classifies issues by type (bug, feature, docs) and priority (critical → low). Detects duplicates. Posts complexity estimates and time ranges.</p>
+      </div>
+
+      <div class="feature-card" style="--delay: 160ms">
+        <div class="feature-icon feature-icon--purple">
+          <i data-lucide="shield-alert"></i>
+        </div>
+        <h3>Secret Scanning</h3>
+        <p>41 regex patterns with entropy gating. Detects API keys, tokens, private keys, and credentials in diffs before they're merged. Creates GitHub issues for findings.</p>
+      </div>
+
+      <div class="feature-card" style="--delay: 240ms">
+        <div class="feature-icon feature-icon--green">
+          <i data-lucide="terminal"></i>
+        </div>
+        <h3>26 Slash Commands</h3>
+        <p>Type <code>/fix</code>, <code>/explain</code>, <code>/security</code>, <code>/autofix</code>, <code>/refactor</code>, <code>/release</code> in any PR or issue comment. The bot responds within seconds.</p>
+      </div>
+
+      <div class="feature-card" style="--delay: 320ms">
+        <div class="feature-icon feature-icon--orange">
+          <i data-lucide="layers"></i>
+        </div>
+        <h3>Multi-Provider AI</h3>
+        <p>4 LLM providers (Groq 70B, Groq 8B, Gemini Flash, OpenRouter) with per-provider circuit breakers, daily usage limits, and automatic fallback if one goes down.</p>
+      </div>
+
+      <div class="feature-card" style="--delay: 400ms">
+        <div class="feature-icon feature-icon--indigo">
+          <i data-lucide="shield"></i>
+        </div>
+        <h3>7-Stage Security Pipeline</h3>
+        <p>Every webhook passes through HMAC verification, IP rate limiting, replay prevention, payload size limit, bot sender filter, idempotency check, and schema validation.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Architecture / How It Works ──────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>How GitHub Events Flow</h2>
+      <p>From a GitHub event to an AI-generated response — a battle-tested pipeline.</p>
+    </div>
+
+    <div class="arch-flow">
+      <div class="arch-step">
+        <div class="arch-step-icon"><i data-lucide="github"></i></div>
+        <div class="arch-step-label">GitHub Event</div>
+        <div class="arch-step-desc">PR · Issue · Comment · Push</div>
+      </div>
+      <div class="arch-arrow"><i data-lucide="arrow-right"></i></div>
+      <div class="arch-step">
+        <div class="arch-step-icon"><i data-lucide="shield"></i></div>
+        <div class="arch-step-label">Security Pipeline</div>
+        <div class="arch-step-desc">HMAC · Rate Limit · Replay</div>
+      </div>
+      <div class="arch-arrow"><i data-lucide="arrow-right"></i></div>
+      <div class="arch-step">
+        <div class="arch-step-icon"><i data-lucide="inbox"></i></div>
+        <div class="arch-step-label">Thread Pool</div>
+        <div class="arch-step-desc">Bounded · ACK Immediately</div>
+      </div>
+      <div class="arch-arrow"><i data-lucide="arrow-right"></i></div>
+      <div class="arch-step">
+        <div class="arch-step-icon"><i data-lucide="cpu"></i></div>
+        <div class="arch-step-label">AI Router</div>
+        <div class="arch-step-desc">4 Providers · Circuit Breakers</div>
+      </div>
+      <div class="arch-arrow"><i data-lucide="arrow-right"></i></div>
+      <div class="arch-step">
+        <div class="arch-step-icon"><i data-lucide="message-square"></i></div>
+        <div class="arch-step-label">GitHub Response</div>
+        <div class="arch-step-desc">Comment · Label · PR · Issue</div>
+      </div>
+    </div>
+
+    <!-- Detailed pipeline sub-steps -->
+    <div class="pipeline-detail">
+      <h3 class="pipeline-title">Security Pipeline Stages</h3>
+      <div class="pipeline-stages">
+        <div class="pipeline-stage"><span class="stage-num">1</span><span>Payload size limit (25 MB)</span></div>
+        <div class="pipeline-stage"><span class="stage-num">2</span><span>IP rate limit (100 req/min)</span></div>
+        <div class="pipeline-stage"><span class="stage-num">3</span><span>HMAC-SHA256 signature</span></div>
+        <div class="pipeline-stage"><span class="stage-num">4</span><span>Replay prevention (5 min window)</span></div>
+        <div class="pipeline-stage"><span class="stage-num">5</span><span>Bot sender filter</span></div>
+        <div class="pipeline-stage"><span class="stage-num">6</span><span>Idempotency check (delivery ID)</span></div>
+        <div class="pipeline-stage"><span class="stage-num">7</span><span>Schema validation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Technologies ──────────────────────────────────────────── -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-header">
+      <h2>Built With</h2>
+      <p>Modern, battle-tested stack designed for reliability on free-tier infrastructure.</p>
+    </div>
+
+    <div class="tech-grid">
+      <div class="tech-badge">🐍 Python / Flask</div>
+      <div class="tech-badge">🔴 Redis</div>
+      <div class="tech-badge">🤖 Groq LLaMA 70B</div>
+      <div class="tech-badge">⚡ Groq LLaMA 8B</div>
+      <div class="tech-badge">💎 Google Gemini Flash</div>
+      <div class="tech-badge">🌐 OpenRouter</div>
+      <div class="tech-badge">🐙 GitHub Apps API</div>
+      <div class="tech-badge">🟢 Gunicorn</div>
+      <div class="tech-badge">☁️ Render</div>
+      <div class="tech-badge">🔒 PyJWT</div>
+      <div class="tech-badge">📦 Celery</div>
+      <div class="tech-badge">🔍 Qdrant</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Slash Commands ────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>26 Slash Commands</h2>
+      <p>Type them in any PR or issue comment. The bot responds within seconds.</p>
+    </div>
+
+    <div class="commands-showcase">
+      <div class="commands-track" id="commandsTrack">
+        <!-- Row 1 — duplicated for seamless loop -->
+        <span class="cmd-badge">/fix</span>
+        <span class="cmd-badge">/explain</span>
+        <span class="cmd-badge">/security</span>
+        <span class="cmd-badge">/autofix</span>
+        <span class="cmd-badge">/improve</span>
+        <span class="cmd-badge">/refactor</span>
+        <span class="cmd-badge">/perf</span>
+        <span class="cmd-badge">/arch</span>
+        <span class="cmd-badge">/ci</span>
+        <span class="cmd-badge">/gaps</span>
+        <span class="cmd-badge">/docs</span>
+        <span class="cmd-badge">/test</span>
+        <span class="cmd-badge">/merge</span>
+        <span class="cmd-badge">/rollback</span>
+        <span class="cmd-badge">/changelog</span>
+        <span class="cmd-badge">/release</span>
+        <span class="cmd-badge">/report</span>
+        <span class="cmd-badge">/budget</span>
+        <span class="cmd-badge">/health</span>
+        <span class="cmd-badge">/summarize</span>
+        <span class="cmd-badge">/impact</span>
+        <span class="cmd-badge">/secfull</span>
+        <span class="cmd-badge">/runtests</span>
+        <span class="cmd-badge">/version</span>
+        <span class="cmd-badge">/notify</span>
+        <span class="cmd-badge">/apply</span>
+        <!-- Duplicate for seamless scroll -->
+        <span class="cmd-badge">/fix</span>
+        <span class="cmd-badge">/explain</span>
+        <span class="cmd-badge">/security</span>
+        <span class="cmd-badge">/autofix</span>
+        <span class="cmd-badge">/improve</span>
+        <span class="cmd-badge">/refactor</span>
+        <span class="cmd-badge">/perf</span>
+        <span class="cmd-badge">/arch</span>
+        <span class="cmd-badge">/ci</span>
+        <span class="cmd-badge">/gaps</span>
+        <span class="cmd-badge">/docs</span>
+        <span class="cmd-badge">/test</span>
+        <span class="cmd-badge">/merge</span>
+        <span class="cmd-badge">/rollback</span>
+        <span class="cmd-badge">/changelog</span>
+        <span class="cmd-badge">/release</span>
+        <span class="cmd-badge">/report</span>
+        <span class="cmd-badge">/budget</span>
+        <span class="cmd-badge">/health</span>
+        <span class="cmd-badge">/summarize</span>
+        <span class="cmd-badge">/impact</span>
+        <span class="cmd-badge">/secfull</span>
+        <span class="cmd-badge">/runtests</span>
+        <span class="cmd-badge">/version</span>
+        <span class="cmd-badge">/notify</span>
+        <span class="cmd-badge">/apply</span>
+      </div>
+    </div>
+
+    <!-- Command reference table -->
+    <div class="cmd-table-wrap">
+      <table class="cmd-table">
+        <thead>
+          <tr>
+            <th>Command</th>
+            <th>Description</th>
+            <th>Scope</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>/fix</code></td><td>Root cause analysis + production-ready fix suggestion</td><td>Issue / PR</td></tr>
+          <tr><td><code>/explain</code></td><td>Plain-English code explanation</td><td>PR</td></tr>
+          <tr><td><code>/security</code></td><td>Security review of changed code</td><td>PR</td></tr>
+          <tr><td><code>/autofix</code></td><td>Create a branch with auto-applied fixes</td><td>PR</td></tr>
+          <tr><td><code>/improve</code></td><td>Suggest code improvements</td><td>PR</td></tr>
+          <tr><td><code>/refactor</code></td><td>Refactoring recommendations</td><td>PR</td></tr>
+          <tr><td><code>/perf</code></td><td>Performance optimization analysis</td><td>PR</td></tr>
+          <tr><td><code>/arch</code></td><td>Architecture analysis and suggestions</td><td>PR</td></tr>
+          <tr><td><code>/ci</code></td><td>CI/CD pipeline analysis</td><td>PR</td></tr>
+          <tr><td><code>/gaps</code></td><td>Test coverage gap detection</td><td>PR</td></tr>
+          <tr><td><code>/merge</code></td><td>Auto-merge PR (maintainer only)</td><td>PR</td></tr>
+          <tr><td><code>/release</code></td><td>Release automation (maintainer only)</td><td>PR</td></tr>
+          <tr><td><code>/health</code></td><td>System health report</td><td>Issue / PR</td></tr>
+          <tr><td><code>/report</code></td><td>Weekly analytics report</td><td>Issue / PR</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ── Getting Started ───────────────────────────────────────── -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-header">
+      <h2>Get Started in 3 Steps</h2>
+      <p>From zero to AI-automated repository in under 10 minutes.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card" style="--delay: 0ms">
+        <div class="step-number">1</div>
+        <h3>Deploy to Render</h3>
+        <p>
+          Fork the repo, connect to Render, and deploy the web service + Redis. Set your environment
+          variables: <code>GITHUB_APP_ID</code>, <code>GITHUB_PRIVATE_KEY</code>,
+          <code>GITHUB_WEBHOOK_SECRET</code>, and at least <code>GROQ_API_KEY</code>.
+        </p>
+      </div>
+
+      <div class="step-card" style="--delay: 120ms">
+        <div class="step-number">2</div>
+        <h3>Create a GitHub App</h3>
+        <p>
+          Go to GitHub → Settings → Developer Settings → GitHub Apps → New. Set the webhook URL
+          to your Render deployment. Enable events: Pull Requests, Issues, Issue Comments,
+          Pushes, Check Runs.
+        </p>
+      </div>
+
+      <div class="step-card" style="--delay: 240ms">
+        <div class="step-number">3</div>
+        <h3>Install on Your Repos</h3>
+        <p>
+          Install the GitHub App on any repository. The bot starts working immediately — type
+          <code>/fix</code> on any issue or <code>/explain</code> on any PR to see it in action.
+        </p>
+      </div>
+    </div>
+
+    <!-- Environment variables quick ref -->
+    <div class="env-ref">
+      <h3 class="env-ref-title">Required Environment Variables</h3>
+      <div class="env-grid">
+        <div class="env-item">
+          <code>GITHUB_APP_ID</code>
+          <span>Your GitHub App's numeric ID</span>
+        </div>
+        <div class="env-item">
+          <code>GITHUB_PRIVATE_KEY</code>
+          <span>RSA private key from GitHub App settings</span>
+        </div>
+        <div class="env-item">
+          <code>GITHUB_WEBHOOK_SECRET</code>
+          <span>32+ char random secret for HMAC verification</span>
+        </div>
+        <div class="env-item">
+          <code>GROQ_API_KEY</code>
+          <span>Free at console.groq.com — primary AI provider</span>
+        </div>
+        <div class="env-item">
+          <code>REDIS_URL</code>
+          <span>Auto-set by Render Redis service</span>
+        </div>
+        <div class="env-item">
+          <code>GEMINI_API_KEY</code>
+          <span>Optional — fallback at aistudio.google.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA Banner ────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="cta-banner">
+      <div class="cta-banner-content">
+        <h2>Ready to automate your GitHub workflow?</h2>
+        <p>Open the live dashboard to see system status, webhook events, and AI provider health in real time.</p>
+      </div>
+      <div class="cta-banner-actions">
+        <a href="/dashboard" class="btn btn--primary">
+          <i data-lucide="layout-dashboard"></i>
+          Open Dashboard
+        </a>
+        <a href="https://github.com/Shweta-Mishra-ai/github-autopilot"
+           class="btn btn--ghost" target="_blank" rel="noopener">
+          <i data-lucide="github"></i>
+          View Source
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

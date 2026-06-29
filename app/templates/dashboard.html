@@ -1,0 +1,273 @@
+{% extends "layout.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+  <div class="container">
+
+    <!-- Page Header -->
+    <div class="dash-header">
+      <div>
+        <h1 class="dash-title">System Dashboard</h1>
+        <p class="dash-subtitle">Real-time status of GitHub Autopilot v{{ version }}</p>
+      </div>
+      <div class="dash-header-right">
+        <span class="last-updated">
+          Last updated: <span id="lastUpdated">—</span>
+        </span>
+        <button class="btn btn--sm btn--ghost" id="refreshBtn">
+          <i data-lucide="refresh-cw"></i> Refresh
+        </button>
+        <a href="/" class="btn btn--sm btn--ghost">
+          <i data-lucide="home"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- System Status Banner -->
+    <div class="status-banner status-banner--unknown" id="statusBanner">
+      <div class="status-banner-dot" id="statusDot"></div>
+      <span class="status-banner-text" id="statusText">Loading system status…</span>
+      <span class="status-banner-version">v{{ version }}</span>
+    </div>
+
+    <!-- ── Row 1: GitHub App · AI Providers · Redis · Webhook Pipeline ── -->
+    <div class="cards-grid cards-grid--4">
+
+      <!-- GitHub App -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon--blue"><i data-lucide="github"></i></div>
+          <h3 class="card-title">GitHub App</h3>
+        </div>
+        <div class="card-body">
+          <div class="metric-row">
+            <span class="metric-label">App ID</span>
+            <span class="metric-value mono" data-metric="github_app_id">—</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Webhooks Received</span>
+            <span class="metric-value" data-metric="webhook_received">—</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Duplicates Skipped</span>
+            <span class="metric-value" data-metric="webhook_duplicates">—</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Events Dropped</span>
+            <span class="metric-value" data-metric="events_dropped">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Providers -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon--purple"><i data-lucide="cpu"></i></div>
+          <h3 class="card-title">AI Providers</h3>
+        </div>
+        <div class="card-body">
+          <div class="provider-row" data-provider="groq_70b">
+            <span class="provider-name">Groq 70B</span>
+            <span class="provider-state-badge state--unknown">—</span>
+          </div>
+          <div class="provider-row" data-provider="groq_8b">
+            <span class="provider-name">Groq 8B</span>
+            <span class="provider-state-badge state--unknown">—</span>
+          </div>
+          <div class="provider-row" data-provider="gemini">
+            <span class="provider-name">Gemini Flash</span>
+            <span class="provider-state-badge state--unknown">—</span>
+          </div>
+          <div class="provider-row" data-provider="openrouter">
+            <span class="provider-name">OpenRouter</span>
+            <span class="provider-state-badge state--unknown">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Redis Status -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon--red"><i data-lucide="database"></i></div>
+          <h3 class="card-title">Redis</h3>
+        </div>
+        <div class="card-body">
+          <div class="big-status-indicator" id="redisStatusWrap">
+            <div class="big-status-dot" id="redisDot" style="background: var(--text-muted)"></div>
+            <span class="big-status-text" id="redisText">Loading…</span>
+          </div>
+          <p class="card-description">
+            Powers idempotency (dedup), IP rate limiting, command rate limiting, analytics, and config cache (5-min TTL).
+          </p>
+        </div>
+      </div>
+
+      <!-- Webhook Pipeline -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon--green"><i data-lucide="activity"></i></div>
+          <h3 class="card-title">Webhook Pipeline</h3>
+        </div>
+        <div class="card-body">
+          <div class="metric-row">
+            <span class="metric-label">Total Events</span>
+            <span class="metric-value" data-metric="events_total">—</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Success Rate</span>
+            <span class="metric-value" data-metric="success_rate">—</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Errors</span>
+            <span class="metric-value" data-metric="events_error">—</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Security Stages</span>
+            <span class="metric-value">7 active</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /row 1 -->
+
+    <!-- ── Row 2: Thread Pool · Event Breakdown · GitHub API · Uptime ── -->
+    <div class="cards-grid cards-grid--4">
+
+      <!-- Thread Pool -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon--orange"><i data-lucide="layers"></i></div>
+          <h3 class="card-title">Thread Pool</h3>
+        </div>
+        <div class="card-body">
+          <div class="metric-row">
+            <span class="metric-label">Max Workers</span>
+            <span class="metric-value" data-metric="pool_max_workers">—</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Pending Tasks</span>
+            <span class="metric-value" data-metric="pool_pending">—</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Queue Capacity</span>
+            <span class="metric-value" data-metric="pool_capacity">—</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Saturation</span>
+            <span class="metric-value" data-metric="pool_saturation">—</span>
+          </div>
+          <div class="saturation-bar-wrap">
+            <div class="saturation-bar">
+              <div class="saturation-fill" id="saturationFill" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Events by Type -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon--pink"><i data-lucide="pie-chart"></i></div>
+          <h3 class="card-title">Events by Type</h3>
+        </div>
+        <div class="card-body event-types-list" id="eventTypesList">
+          <div class="loading-placeholder">Loading…</div>
+        </div>
+      </div>
+
+      <!-- GitHub API Rate Limit -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon--teal"><i data-lucide="cloud"></i></div>
+          <h3 class="card-title">GitHub API</h3>
+        </div>
+        <div class="card-body">
+          <div class="metric-row">
+            <span class="metric-label">Requests Remaining</span>
+            <span class="metric-value" data-metric="gh_api_remaining">—</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Resets In</span>
+            <span class="metric-value" data-metric="gh_api_resets_human">—</span>
+          </div>
+          <div class="gh-rl-bar-wrap">
+            <div class="gh-rl-bar">
+              <div class="gh-rl-fill" id="ghRlFill" style="width: 0%"></div>
+            </div>
+          </div>
+          <p class="card-description">GitHub limits: 5,000 requests/hour for authenticated calls. Bot waits when &lt; 50 remaining.</p>
+        </div>
+      </div>
+
+      <!-- Uptime & Metrics Summary -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon card-icon--indigo"><i data-lucide="bar-chart-2"></i></div>
+          <h3 class="card-title">System Info</h3>
+        </div>
+        <div class="card-body">
+          <div class="metric-row">
+            <span class="metric-label">Uptime</span>
+            <span class="metric-value" data-metric="uptime_human">—</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Version</span>
+            <span class="metric-value mono" data-metric="version">—</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Total Events</span>
+            <span class="metric-value" data-metric="events_total">—</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">Success Rate</span>
+            <span class="metric-value" data-metric="success_rate">—</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /row 2 -->
+
+    <!-- ── Recent Webhook Events ── -->
+    <div class="card card--full">
+      <div class="card-header">
+        <div class="card-icon card-icon--blue"><i data-lucide="list"></i></div>
+        <h3 class="card-title">Recent Webhook Events</h3>
+        <span class="card-header-count" id="eventsCount">0 events</span>
+      </div>
+      <div class="table-wrap">
+        <table class="events-table">
+          <thead>
+            <tr>
+              <th>Event Type</th>
+              <th>Repository</th>
+              <th>Delivery ID</th>
+              <th>Time</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="eventsTableBody">
+            <tr class="table-empty-row">
+              <td colspan="5">No webhook events recorded yet — they appear here as webhooks arrive.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Refresh footer -->
+    <div class="dash-footer">
+      <span>Auto-refreshing every 30s</span>
+      <span class="dash-footer-sep">·</span>
+      <span>Last updated: <span id="lastUpdatedFooter">—</span></span>
+      <span class="dash-footer-sep">·</span>
+      <span>v{{ version }}</span>
+    </div>
+
+  </div><!-- /container -->
+</div><!-- /dashboard -->
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}
