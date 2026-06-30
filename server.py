@@ -10,6 +10,9 @@ import logging
 import os
 import time
 import traceback
+from dotenv import load_dotenv
+load_dotenv()
+
 
 from flask import Flask, jsonify, render_template, request
 
@@ -254,7 +257,7 @@ def test_discord():
 @app.route("/mcp", methods=["POST"])
 def mcp_endpoint():
     """MCP (Model Context Protocol) endpoint for IDE integrations."""
-    from app.mcp.server import handle_mcp_request
+    from app.mcp.mcp_server import handle_mcp_request
 
     auth  = request.headers.get("Authorization", "")
     token = auth[7:] if auth.startswith("Bearer ") else ""

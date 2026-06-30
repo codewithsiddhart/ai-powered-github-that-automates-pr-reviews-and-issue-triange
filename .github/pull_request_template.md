@@ -7,8 +7,6 @@
 <!-- List the key changes made -->
 
 - 
-- 
-
 ## Type of change
 
 - [ ] `feat` — New feature or command

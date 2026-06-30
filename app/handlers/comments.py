@@ -409,7 +409,7 @@ def _cmd_apply(
             raise
 
         # Check if PR already exists for this branch
-        owner = repo.split("/")[1] if "/" in repo else repo
+        owner = repo.split("/")[0] if "/" in repo else repo
         existing_prs = gh_get(
             f"/repos/{repo}/pulls?head={owner}:{branch}&state=open&per_page=5",
             token,
