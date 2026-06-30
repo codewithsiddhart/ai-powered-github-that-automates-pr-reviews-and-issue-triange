@@ -1,6 +1,5 @@
 # render.yaml — AI Repo Manager
 services:
-
   - type: web
     name: github-autopilot-1
     env: python
@@ -49,3 +48,4 @@ services:
     name: github-autopilot-redis
     plan: free
     maxmemoryPolicy: allkeys-lru
+    ipAllowList: []
