@@ -2,7 +2,7 @@
 
 > A self-hosted, AI-powered GitHub assistant that reviews pull requests, triages issues, scans for leaked secrets, and answers 26 slash commands like `/fix` and `/autofix` — running entirely on free-tier infrastructure ($0/month).
 
-**Crafted by Siddharth Purohit & Shweta Sharma.**
+
 
 - **Web framework:** Flask (entry point: `server.py`)
 - **AI:** 4-provider router (Groq 70B, Groq 8B, Gemini Flash, OpenRouter) with automatic failover
